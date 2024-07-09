@@ -3,6 +3,7 @@ import { logo1 } from "../assets/images";
 import { navLinks } from "../constants";
 import { Menu } from "../components";
 
+
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState(null);
@@ -10,7 +11,10 @@ const Nav = () => {
 
   const handleStickyHeader = () => {
     window.addEventListener("scroll", () => {
-      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+      if (
+        document.body.scrollTop > 80 ||
+        document.documentElement.scrollTop > 80
+      ) {
         headerRef.current.classList.add("sticky_header");
       } else {
         headerRef.current.classList.remove("sticky_header");
@@ -22,19 +26,21 @@ const Nav = () => {
     handleStickyHeader();
 
     return () => window.addEventListener("scroll", handleStickyHeader);
-  }, []); 
+  }, []);
 
   const handleActive = (label) => {
     setActive(label);
   };
 
   const handToggle = () => {
-    setToggle((prev)=>(!prev))
-    console.log(toggle);
+    setToggle((prev) => !prev);
   };
 
   return (
-    <header ref={headerRef} className="flex justify-between items-center w-ful lg:px-[80px] md:px-[40px] px-[30px] py-[30px]   ">
+    <header
+      ref={headerRef}
+      className="flex justify-between items-center w-ful lg:px-[80px] md:px-[40px] px-[30px] py-[30px]  relative "
+    >
       <div className="lg:w-[220px] md:w-[180px] w-[160px] h-auto ">
         <a href="/">
           <img src={logo1} alt="logo" className="w-full" />
@@ -43,10 +49,12 @@ const Nav = () => {
 
       <nav
         className={`justify-between items-center left-0 max-w-[1440px] gap-x-8 ml-0  ${
-          toggle ? "flex" : "hidden"
+          toggle ? "flex " : "hidden"
         } lg:flex  `}
       >
-        <ul className="flex flex-1 justify-between md:gap-8 md:text-[22px] gap-16 lg:text-[28px] capitalize text-[18px] ">
+        <ul className={`flex flex-1 justify-between md:gap-8 md:text-[22px] gap-16 lg:text-[28px] capitalize text-[18px] ${
+          toggle  ? 'flex-col absolute top-20 left-0   justify-evenly items-center rounded-[30px]   w-full h-[100vh] bg-slate-100 '   :''
+        } `}>
           {navLinks.map((items) => (
             <li
               key={items.label}
@@ -55,6 +63,7 @@ const Nav = () => {
               } `}
               onClick={() => {
                 handleActive(items.label);
+                setToggle(false)
               }}
             >
               <a href={items.href}>{items.label}</a>
@@ -67,7 +76,13 @@ const Nav = () => {
       </nav>
 
       <div className="block lg:hidden" onClick={handToggle}>
-        <Menu />
+        {/* {toggle ? (
+          <i class="ri-close-large-line"></i>
+        ) : (
+          <i class="ri-menu-line"></i>
+        )} */}
+
+        <Menu toggle={toggle}/>
       </div>
     </header>
   );

@@ -19,7 +19,10 @@ body{
 }
 
 @layer components {
+  
+  /* animation  */
 
+ 
   .swiper {
     width: 100%;
     height: 100%;
