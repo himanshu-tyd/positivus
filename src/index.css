@@ -94,7 +94,9 @@ body{
     top: 0;
     left: 0;
     z-index: 99999;
-    box-shadow: 3px 3px -8px 3px #000000;
+  
+    box-shadow: 1px 2px 20px 0px black;
+    box-sizing: border-box;
     background: white;
 }
   .max-container {

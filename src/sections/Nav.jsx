@@ -3,7 +3,6 @@ import { logo1 } from "../assets/images";
 import { navLinks } from "../constants";
 import { Menu } from "../components";
 
-
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState(null);
@@ -33,13 +32,13 @@ const Nav = () => {
   };
 
   const handToggle = () => {
-    setToggle((prev) => !prev);
+    setToggle(!toggle);
   };
 
   return (
     <header
       ref={headerRef}
-      className="flex justify-between items-center w-ful lg:px-[80px] md:px-[40px] px-[30px] py-[30px]  relative "
+      className="flex justify-between items-center w-ful lg:px-[80px] md:px-[40px] px-[30px] py-[30px] "
     >
       <div className="lg:w-[220px] md:w-[180px] w-[160px] h-auto ">
         <a href="/">
@@ -48,13 +47,17 @@ const Nav = () => {
       </div>
 
       <nav
-        className={`justify-between items-center left-0 max-w-[1440px] gap-x-8 ml-0  ${
+        className={`justify-between items-center left-0 max-w-[1440px] gap-x-8 ml-0 ${
           toggle ? "flex " : "hidden"
         } lg:flex  `}
       >
-        <ul className={`flex flex-1 justify-between md:gap-8 md:text-[22px] gap-16 lg:text-[28px] capitalize text-[18px] ${
-          toggle  ? 'flex-col absolute top-20 left-0   justify-evenly items-center rounded-[30px]   w-full h-[100vh] bg-slate-100 '   :''
-        } `}>
+        <ul
+          className={`flex flex-1 justify-between md:gap-8 md:text-[22px] gap-16 lg:text-[28px] capitalize text-[18px] ${
+            toggle
+              ? "flex-col absolute top-24 left-0   justify-evenly items-center rounded-[30px]   w-full h-[100vh] bg-dark text-white "
+              : ""
+          } `}
+        >
           {navLinks.map((items) => (
             <li
               key={items.label}
@@ -63,26 +66,20 @@ const Nav = () => {
               } `}
               onClick={() => {
                 handleActive(items.label);
-                setToggle(false)
+                setToggle(false);
               }}
             >
               <a href={items.href}>{items.label}</a>
             </li>
           ))}
         </ul>
-        <button className="px-[2rem] py-[1rem] border-[1px] border-black rounded-[20px] capitalize hover:scale-125 duration-150 max-md:hidden">
+        <button className="px-[2rem] py-[1rem] border-[1px] border-black rounded-[20px] capitalize hover:scale-125 duration-150 hidden lg:flex">
           request
         </button>
       </nav>
 
       <div className="block lg:hidden" onClick={handToggle}>
-        {/* {toggle ? (
-          <i class="ri-close-large-line"></i>
-        ) : (
-          <i class="ri-menu-line"></i>
-        )} */}
-
-        <Menu toggle={toggle}/>
+        <Menu toggle={toggle} />
       </div>
     </header>
   );
