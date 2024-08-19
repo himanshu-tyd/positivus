@@ -52,9 +52,9 @@ const Nav = () => {
         } lg:flex  `}
       >
         <ul
-          className={`flex flex-1 justify-between md:gap-8 md:text-[22px] gap-16 lg:text-[28px] capitalize text-[18px] ${
+          className={`flex flex-1 py-5 justify-between md:gap-8 md:text-[22px] gap-16 lg:text-[28px] capitalize text-[18px] ${
             toggle
-              ? "flex-col absolute top-24 left-0   justify-evenly items-center rounded-[30px]   w-full h-[100vh] bg-dark text-white "
+              ? "flex-col absolute top-24 left-0   justify-evenly items-center rounded-[10px]   w-full h-auto bg-dark text-white "
               : ""
           } `}
         >
